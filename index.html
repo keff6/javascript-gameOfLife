@@ -1,65 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Game of life</title>
 </head>
-<script type="text/javascript">
-//Declaro variables
-var x = 0;
-var y = 0;
-var x2 = 0;
-var y2 = 0;
 
-window.onload = function(){
-click();
-};
-
-function dibujar(x,y,x2,y2){
-canvas = document.getElementById('canvas');
-ctx = canvas.getContext('2d');
-
-ctx.fillStyle = 'red';
-ctx.fillRect(x, y, x2, y2);
-ctx.fill();
-}
-
-function click(){
-//Añadimos un addEventListener al canvas, para reconocer el click
-canvas.addEventListener('click',
-//Una vez se haya clickado se activará la siguiente función
-function(e){
-pintar(e.clientX, e.clientY);
-}
-,false);
-}
-
-function pintar(x, y){
-//calculo para que los cuadros queden ajustados en una cuadrícula de 10×10
-dibujar(Math.floor(x/20)*20, Math.floor(y/20)*20, 20, 20);
-}
-
-</script>
-
-<style type="text/css">
-
-body {
-margin-left: 0px;
-margin-top: 0px;
-margin-right: 0px;
-margin-bottom: 0px;
-}
-  
-  canvas {
-    border: 1px solid blue;
-  }
-
-</style>
 <body>
-
-<canvas id="canvas" height="500px" width="500px">
-Su navegador no soporta Canvas!
-</canvas>
-<p>Para pintar, solo haz click en una dimensión de 500×500 píxeles alineada a la derecha :)</p>
+  <canvas id="canvas" height="500px" width="500px">
+    Your browser doesn't suppor canvas!
+  </canvas>
+  <script src="script.js"></script>
 </body>
+
 </html>
