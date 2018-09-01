@@ -4,18 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <title>Game of life</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <div class="generate-controls">
-    <input type="number" placeholder="Height" id="input-height">
-    <input type="number" placeholder="Width" id="input-width">
+    <input type="number" placeholder="Height" id="input-height" step="20">
+    <input type="number" placeholder="Width" id="input-width" step="20">
     <button id="btn-generate">Generate Grid</button>
   </div>
 
-  <canvas id="canvas">
+  <!-- <canvas id="canvas">
     Your browser doesn't suppor canvas!
-  </canvas>
+  </canvas> -->
+  <table id="table" cellspacing="0">
+  </table>
   <script src="script.js"></script>
 </body>
 
