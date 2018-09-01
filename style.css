@@ -7,3 +7,16 @@
   width: 15px;
   height: 15px;
 }
+
+.dot {
+  background: black;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+}
+
+.blank {
+  background: #fff;
+  width: 90%;
+  height: 90%;
+}
