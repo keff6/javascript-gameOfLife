@@ -6,20 +6,39 @@ var App = (function (document) {
     return Math.round(Math.random())
   }
 
+  function generateValuesGrid(x, y) {
+    let valuesGrid = [x];
+
+    for (let i = 0; i < x; i++) {      
+      const row = [y]
+      for (let j = 0; j < y; j++) {        
+        const bit = generateRandomBit();
+        row[j] = (bit);
+      }
+      valuesGrid[i] = row;
+    }
+
+    return valuesGrid;
+  }
+
   function paintGrill() {
     const heightVal = document.getElementById('input-height').value;
     const widthVal = document.getElementById('input-width').value;
 
-    const customHeight = heightVal || 15;
-    const customWidth = widthVal || 15;
+    const customHeight = heightVal || 10;
+    const customWidth = widthVal || 10;
+
+    let gridValues = generateValuesGrid(10,10);
 
     let gridHtml = '';
 
+    console.log(gridValues);
+
     for (let i = 0; i < customHeight; i++) {
+      let row = gridValues[i];
       gridHtml += '<tr>'
       for (let j = 0; j < customWidth; j++) {
-        const bit = generateRandomBit();
-        gridHtml += `<td><div class="${bit ? 'dot' : 'blank'}"></div></td>`
+        gridHtml += `<td><div class="${row[j] === 1 ? 'dot' : 'blank'}"></div></td>`
       }
       gridHtml += '</tr>'
     }
@@ -28,7 +47,7 @@ var App = (function (document) {
 
     table.innerHTML = gridHtml;
 
-    setTimeout(paintGrill,1500);
+    // setTimeout(paintGrill,1500);
   }
 
   function setEventListeners() {
