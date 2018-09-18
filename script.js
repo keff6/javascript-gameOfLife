@@ -30,44 +30,55 @@ var App = (function (document) {
   }
 
 
-  function getNextGeneration(currentGrid) {
-    let nextGen = [];
+  function getNextGeneration() {
+    let nextGen = [];    
 
-    for (let i = 0, colLen = currentGrid.length; i < colLen; i++) {
-      let row = currentGrid[i];
+    for (let i = 0, colLen = gridValues.length; i < colLen; i++) {
+      let row = gridValues[i];
       let newRow = [];
+      //console.log('fila', i)
       for (let j = 0, rowLen = row.length; j < rowLen; j++) {
+        //console.log('col', j)
         let countNeighbors = 0;
         // left
         if(j > 0 && row[j-1] === 1) {
+          console.log('left')
           countNeighbors++;
         }
         // right
         if(j < rowLen - 1 && row[j+1] === 1) {
+          console.log('right')
           countNeighbors++;
         }
         // up
-        if(i > 0 && currentGrid[i-1] === 1) {
+        if(i > 0 && gridValues[i-1][j] === 1) {
+          console.log('up')
           countNeighbors++;
         }
         // down
-        if(i < colLen - 1 && currentGrid[i+1] === 1) {
+        if(i < colLen - 1 && gridValues[i+1][j] === 1) {
+          console.log('down')
           countNeighbors++;
         }
 
         if(row[j] === 1) {
-          newRow = countNeighbors === 2 || countNeighbors === 3 ? 1 : 0;
+          newRow[j] = countNeighbors === 2 || countNeighbors === 3 ? 1 : 0;
         } else {
-          newRow = countNeighbors === 3 ? 1 : 0;
+          console.log('vive', countNeighbors)
+          newRow[j] = countNeighbors === 3 ? 1 : 0;
         }
       }
+      console.log(newRow);
       nextGen[i] = newRow;
     }
-    return nextGen;
+    console.log(gridValues, nextGen)
+    gridValues = nextGen;
+    
+    paintGrill();
   }
 
   function start() {
-
+    getNextGeneration();
   }
 
   function generateInitialGen(){
@@ -76,10 +87,10 @@ var App = (function (document) {
 
     gridValues = generateValuesGrid(heightVal,widthVal);
 
-    paintGrill(gridValues); 
+    paintGrill(); 
   }
 
-  function paintGrill(gridValues) {
+  function paintGrill() {
     // const heightVal = document.getElementById('input-height').value;
     // const widthVal = document.getElementById('input-width').value;
 
