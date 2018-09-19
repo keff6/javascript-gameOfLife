@@ -40,38 +40,28 @@ var App = (function (document) {
       for (let j = 0, rowLen = row.length; j < rowLen; j++) {
         //console.log('col', j)
         let countNeighbors = 0;
-        // left
-        if(j > 0 && row[j-1] === 1) {
-          console.log('left')
-          countNeighbors++;
-        }
-        // right
-        if(j < rowLen - 1 && row[j+1] === 1) {
-          console.log('right')
-          countNeighbors++;
-        }
-        // up
-        if(i > 0 && gridValues[i-1][j] === 1) {
-          console.log('up')
-          countNeighbors++;
-        }
-        // down
-        if(i < colLen - 1 && gridValues[i+1][j] === 1) {
-          console.log('down')
-          countNeighbors++;
-        }
+
+        // --- count neighbours ----
+
+        if(i>0 && j>0) { gridValues[i-1][j-1] === 1 && countNeighbors++ }
+        if(i>0) { gridValues[i-1][j] === 1 && countNeighbors++ }
+        if(i>0 && j < rowLen - 1) { gridValues[i-1][j+1] === 1 && countNeighbors++ }
+        if(j>0) { gridValues[i][j-1] === 1 && countNeighbors++ }
+        if(j < rowLen - 1) { gridValues[i][j+1] === 1 && countNeighbors++ }
+        if(i < colLen -1 && j > 0) { gridValues[i+1][j-1] === 1 && countNeighbors++ }
+        if(i < colLen -1) { gridValues[i+1][j] === 1 && countNeighbors++ }
+        if(i < colLen -1 && j < rowLen - 1) { gridValues[i+1][j+1] === 1 && countNeighbors++ }
+
+        //--------------------------
 
         if(row[j] === 1) {
           newRow[j] = countNeighbors === 2 || countNeighbors === 3 ? 1 : 0;
         } else {
-          console.log('vive', countNeighbors)
           newRow[j] = countNeighbors === 3 ? 1 : 0;
         }
       }
-      console.log(newRow);
       nextGen[i] = newRow;
     }
-    console.log(gridValues, nextGen)
     gridValues = nextGen;
     
     paintGrill();
@@ -86,6 +76,14 @@ var App = (function (document) {
     widthVal = widthValueUI.value || 5;
 
     gridValues = generateValuesGrid(heightVal,widthVal);
+
+    // gridValues = [
+    //   [0,0,0,0,0],
+    //   [0,0,1,0,0],
+    //   [0,0,1,0,0],
+    //   [0,0,1,0,0],
+    //   [0,0,0,0,0]
+    // ];
 
     paintGrill(); 
   }
