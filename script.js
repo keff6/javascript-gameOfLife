@@ -10,6 +10,7 @@ var App = (function (document) {
   const btnGenerate = document.getElementById('btn-generate');
   const btnPlay = document.getElementById('btn-play');
 
+
   function generateRandomBit() {
     return Math.round(Math.random())
   }
@@ -103,7 +104,7 @@ var App = (function (document) {
       let row = gridValues[i];
       gridHtml += '<tr>'
       for (let j = 0; j < widthVal; j++) {
-        gridHtml += `<td><div class="${row[j] === 1 ? 'dot' : 'blank'}"></div></td>`
+        gridHtml += `<td data-i="${i}" data-j="${j}"><div class="${row[j] === 1 ? 'dot' : 'blank'}"></div></td>`
       }
       gridHtml += '</tr>'
     }
@@ -112,12 +113,39 @@ var App = (function (document) {
 
     table.innerHTML = gridHtml;
 
+    const tdNodes = document.getElementsByTagName('td');
+    const spots = Array.prototype.slice.call(tdNodes,0);
+    spots.forEach(spot => spot.addEventListener('click', (event) => {
+      console.log(spot)
+      const isBlank = spot.getElementsByClassName("blank")[0] ? true : false;
+      const positionI = event.path[1].dataset.i;      
+      const positionJ = event.path[1].dataset.j;      
+      let d = '';
+      
+      if(positionI && positionJ) {
+        if(isBlank) {
+          d = spot.getElementsByClassName("blank")[0];
+          d.classList.remove('blank');
+          d.classList.add('dot');
+          
+          gridValues[positionI][positionJ] = 1;
+        }else {
+          d = spot.getElementsByClassName("dot")[0];
+          d.classList.remove('dot');
+          d.classList.add('blank');
+          gridValues[positionI][positionJ] = 0;
+        }
+      }      
+      
+      console.log(gridValues)
+    }));
+
     // setTimeout(paintGrill,1500);
   }
 
   function setEventListeners() {
     btnGenerate.addEventListener('click', generateInitialGen);
-    btnPlay.addEventListener('click', start);
+    btnPlay.addEventListener('click', start);    
   }
 
   return {
