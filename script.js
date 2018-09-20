@@ -30,6 +30,18 @@ var App = (function (document) {
     return valuesGrid;
   }
 
+  function neighboursCount(i,j,rowLen, colLen){
+    let countNeighbors = 0;
+    if(i>0 && j>0) { gridValues[i-1][j-1] === 1 && countNeighbors++ }
+    if(i>0) { gridValues[i-1][j] === 1 && countNeighbors++ }
+    if(i>0 && j < rowLen - 1) { gridValues[i-1][j+1] === 1 && countNeighbors++ }
+    if(j>0) { gridValues[i][j-1] === 1 && countNeighbors++ }
+    if(j < rowLen - 1) { gridValues[i][j+1] === 1 && countNeighbors++ }
+    if(i < colLen -1 && j > 0) { gridValues[i+1][j-1] === 1 && countNeighbors++ }
+    if(i < colLen -1) { gridValues[i+1][j] === 1 && countNeighbors++ }
+    if(i < colLen -1 && j < rowLen - 1) { gridValues[i+1][j+1] === 1 && countNeighbors++ }
+    return countNeighbors;
+  }
 
   function getNextGeneration() {
     let nextGen = [];    
@@ -40,20 +52,7 @@ var App = (function (document) {
       //console.log('fila', i)
       for (let j = 0, rowLen = row.length; j < rowLen; j++) {
         //console.log('col', j)
-        let countNeighbors = 0;
-
-        // --- count neighbours ----
-
-        if(i>0 && j>0) { gridValues[i-1][j-1] === 1 && countNeighbors++ }
-        if(i>0) { gridValues[i-1][j] === 1 && countNeighbors++ }
-        if(i>0 && j < rowLen - 1) { gridValues[i-1][j+1] === 1 && countNeighbors++ }
-        if(j>0) { gridValues[i][j-1] === 1 && countNeighbors++ }
-        if(j < rowLen - 1) { gridValues[i][j+1] === 1 && countNeighbors++ }
-        if(i < colLen -1 && j > 0) { gridValues[i+1][j-1] === 1 && countNeighbors++ }
-        if(i < colLen -1) { gridValues[i+1][j] === 1 && countNeighbors++ }
-        if(i < colLen -1 && j < rowLen - 1) { gridValues[i+1][j+1] === 1 && countNeighbors++ }
-
-        //--------------------------
+        let countNeighbors = neighboursCount(i,j,rowLen, colLen);
 
         if(row[j] === 1) {
           newRow[j] = countNeighbors === 2 || countNeighbors === 3 ? 1 : 0;
@@ -63,8 +62,7 @@ var App = (function (document) {
       }
       nextGen[i] = newRow;
     }
-    gridValues = nextGen;
-    
+    gridValues = nextGen;    
     paintGrill();
   }
 
@@ -77,28 +75,11 @@ var App = (function (document) {
     widthVal = widthValueUI.value || 5;
 
     gridValues = generateValuesGrid(heightVal,widthVal);
-
-    // gridValues = [
-    //   [0,0,0,0,0],
-    //   [0,0,1,0,0],
-    //   [0,0,1,0,0],
-    //   [0,0,1,0,0],
-    //   [0,0,0,0,0]
-    // ];
-
     paintGrill(); 
   }
 
   function paintGrill() {
-    // const heightVal = document.getElementById('input-height').value;
-    // const widthVal = document.getElementById('input-width').value;
-
-    // const customHeight = heightVal || 5;
-    // const customWidth = widthVal || 5;   
-
     let gridHtml = '';
-
-    // console.log(gridValues);
 
     for (let i = 0; i < heightVal; i++) {
       let row = gridValues[i];
@@ -110,9 +91,11 @@ var App = (function (document) {
     }
 
     const table = document.getElementById('table');
-
     table.innerHTML = gridHtml;
+    setCellEvents()
+  }
 
+  function setCellEvents() {
     const tdNodes = document.getElementsByTagName('td');
     const spots = Array.prototype.slice.call(tdNodes,0);
     spots.forEach(spot => spot.addEventListener('click', (event) => {
@@ -136,11 +119,7 @@ var App = (function (document) {
           gridValues[positionI][positionJ] = 0;
         }
       }      
-      
-      console.log(gridValues)
     }));
-
-    // setTimeout(paintGrill,1500);
   }
 
   function setEventListeners() {
