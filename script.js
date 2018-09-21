@@ -5,10 +5,12 @@ var App = (function (document) {
   let heightVal = 0;
   let widthVal = 0;
   let gridValues = [];
+  let play;
 
   // const canvas = document.getElementById('canvas');
   const btnGenerate = document.getElementById('btn-generate');
   const btnPlay = document.getElementById('btn-play');
+  const btnStep = document.getElementById('btn-step');
 
 
   function generateRandomBit() {
@@ -49,9 +51,7 @@ var App = (function (document) {
     for (let i = 0, colLen = gridValues.length; i < colLen; i++) {
       let row = gridValues[i];
       let newRow = [];
-      //console.log('fila', i)
       for (let j = 0, rowLen = row.length; j < rowLen; j++) {
-        //console.log('col', j)
         let countNeighbors = neighboursCount(i,j,rowLen, colLen);
 
         if(row[j] === 1) {
@@ -67,10 +67,16 @@ var App = (function (document) {
   }
 
   function start() {
-    getNextGeneration();
+    play = setInterval(getNextGeneration, 1000);
+  }
+
+  function step() {
+    clearInterval(play)
+    getNextGeneration(); 
   }
 
   function generateInitialGen(){
+    clearInterval(play)
     heightVal = heightValueUI.value || 5;
     widthVal = widthValueUI.value || 5;
 
@@ -125,6 +131,7 @@ var App = (function (document) {
   function setEventListeners() {
     btnGenerate.addEventListener('click', generateInitialGen);
     btnPlay.addEventListener('click', start);    
+    btnStep.addEventListener('click', step);    
   }
 
   return {
