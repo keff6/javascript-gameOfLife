@@ -67,7 +67,7 @@ var App = (function (document) {
   }
 
   function start() {
-    play = setInterval(getNextGeneration, 1000);
+    play = setInterval(getNextGeneration, 500);
   }
 
   function step() {
