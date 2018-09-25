@@ -14,15 +14,22 @@
     <button id="btn-generate">Generate Grid</button>
     <button id="btn-play">Play</button>
     <button id="btn-step">Step</button>
-    <input type="range" id="range-speed" list="tickmarks">
-    
-    <datalist id="tickmarks">
-      <option value="125" label="0%">
-      <option value="250">
-      <option value="500" label="50%">
-      <option value="1000">
-      <option value="2000" label="100%">
-    </datalist>
+
+<input type="range" min="0.5" max="1.5" value="1" id="fader" 
+	step="0.25" list="volsettings" oninput="outputUpdate(value)">
+<datalist id="volsettings">
+	<option>0.5</option>
+	<option>0.75</option>
+	<option>1</option>
+	<option>1.25</option>
+	<option>1.5</option>
+</datalist>
+<output for="fader" id="volume">1</output>
+    <script>
+      function outputUpdate(vol) {
+    document.querySelector('#volume').value = vol;
+  }
+    </script>
   </div>
 
   <!-- <canvas id="canvas">

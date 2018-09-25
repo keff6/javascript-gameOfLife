@@ -128,6 +128,8 @@ var App = (function (document) {
     }));
   }
 
+  
+  
   function setEventListeners() {
     btnGenerate.addEventListener('click', generateInitialGen);
     btnPlay.addEventListener('click', start);    
