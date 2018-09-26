@@ -2,10 +2,13 @@ var App = (function (document) {
   // Global variables
   let heightValueUI = document.getElementById('input-height');
   let widthValueUI = document.getElementById('input-width');
+  const speedControl = document.getElementById('speed-control');
   let heightVal = 0;
   let widthVal = 0;
   let gridValues = [];
   let play;
+  let currentSpeed = 1000;
+  const baseSpeed = 1000;
 
   // const canvas = document.getElementById('canvas');
   const btnGenerate = document.getElementById('btn-generate');
@@ -67,7 +70,7 @@ var App = (function (document) {
   }
 
   function start() {
-    play = setInterval(getNextGeneration, 500);
+    play = setInterval(getNextGeneration, currentSpeed);
   }
 
   function step() {
@@ -99,6 +102,13 @@ var App = (function (document) {
     const table = document.getElementById('table');
     table.innerHTML = gridHtml;
     setCellEvents()
+  }
+
+  function outputUpdate(vol) {
+    clearInterval(play)
+    currentSpeed = baseSpeed * vol;
+    console.log(currentSpeed)
+    play = setInterval(getNextGeneration, currentSpeed);
   }
 
   function setCellEvents() {
@@ -133,7 +143,8 @@ var App = (function (document) {
   function setEventListeners() {
     btnGenerate.addEventListener('click', generateInitialGen);
     btnPlay.addEventListener('click', start);    
-    btnStep.addEventListener('click', step);    
+    btnStep.addEventListener('click', step);
+    speedControl.addEventListener('input', () => outputUpdate(event.target.value)); 
   }
 
   return {

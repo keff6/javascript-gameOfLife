@@ -15,21 +15,16 @@
     <button id="btn-play">Play</button>
     <button id="btn-step">Step</button>
 
-<input type="range" min="0.5" max="1.5" value="1" id="fader" 
-	step="0.25" list="volsettings" oninput="outputUpdate(value)">
+<input id="speed-control" type="range" min="0.5" max="1.5" value="1" id="fader" 
+	step="0.25" list="volsettings">
 <datalist id="volsettings">
-	<option>0.5</option>
-	<option>0.75</option>
-	<option>1</option>
-	<option>1.25</option>
 	<option>1.5</option>
+	<option>1.25</option>
+	<option>1</option>
+	<option>0.75</option>
+	<option>0.5</option>
 </datalist>
 <output for="fader" id="volume">1</output>
-    <script>
-      function outputUpdate(vol) {
-    document.querySelector('#volume').value = vol;
-  }
-    </script>
   </div>
 
   <!-- <canvas id="canvas">
