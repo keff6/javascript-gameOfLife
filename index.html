@@ -11,25 +11,21 @@
   <div class="generate-controls">
     <input type="number" placeholder="Height" id="input-height" step="20">
     <input type="number" placeholder="Width" id="input-width" step="20">
-    <button id="btn-generate">Generate Grid</button>
+    <button id="btn-generate">Random Grid</button>
+    <button id="btn-clear">Clear Grid</button>
     <button id="btn-play">Play</button>
     <button id="btn-step">Step</button>
-
-<input id="speed-control" type="range" min="0.5" max="1.5" value="1" id="fader" 
-	step="0.25" list="volsettings">
-<datalist id="volsettings">
-	<option>1.5</option>
-	<option>1.25</option>
-	<option>1</option>
-	<option>0.75</option>
-	<option>0.5</option>
-</datalist>
+    <input id="speed-control" type="range" min="0" max="4" value="2" id="fader" 
+      step="1" list="volsettings">
+    <datalist id="volsettings">
+      <option>0</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+    </datalist>
 <output for="fader" id="volume">1</output>
   </div>
-
-  <!-- <canvas id="canvas">
-    Your browser doesn't suppor canvas!
-  </canvas> -->
   <table id="table" cellspacing="0">
   </table>
   <script src="script.js"></script>

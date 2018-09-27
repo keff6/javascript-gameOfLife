@@ -2,19 +2,19 @@ var App = (function (document) {
   // Global variables
   let heightValueUI = document.getElementById('input-height');
   let widthValueUI = document.getElementById('input-width');
-  const speedControl = document.getElementById('speed-control');
   let heightVal = 0;
   let widthVal = 0;
   let gridValues = [];
   let play;
+  const speedControl = document.getElementById('speed-control');  
+  const speed = [ 2000, 1500, 1000, 500, 250 ];
   let currentSpeed = 1000;
-  const baseSpeed = 1000;
 
   // const canvas = document.getElementById('canvas');
   const btnGenerate = document.getElementById('btn-generate');
+  const btnClear = document.getElementById('btn-clear');
   const btnPlay = document.getElementById('btn-play');
   const btnStep = document.getElementById('btn-step');
-
 
   function generateRandomBit() {
     return Math.round(Math.random())
@@ -32,6 +32,19 @@ var App = (function (document) {
       valuesGrid[i] = row;
     }
 
+    return valuesGrid;
+  }
+
+  function generateClearGrid(x, y) {
+    let valuesGrid = [x];
+
+    for (let i = 0; i < x; i++) {      
+      const row = [y]
+      for (let j = 0; j < y; j++) {     
+        row[j] = 0;
+      }
+      valuesGrid[i] = row;
+    }
     return valuesGrid;
   }
 
@@ -78,6 +91,15 @@ var App = (function (document) {
     getNextGeneration(); 
   }
 
+  function getClearGrid() {
+    clearInterval(play)
+    heightVal = heightValueUI.value || 5;
+    widthVal = widthValueUI.value || 5;
+
+    gridValues = generateClearGrid(heightVal,widthVal);
+    paintGrill(); 
+  }
+
   function generateInitialGen(){
     clearInterval(play)
     heightVal = heightValueUI.value || 5;
@@ -106,7 +128,7 @@ var App = (function (document) {
 
   function outputUpdate(vol) {
     clearInterval(play)
-    currentSpeed = baseSpeed * vol;
+    currentSpeed = speed[vol];
     console.log(currentSpeed)
     play = setInterval(getNextGeneration, currentSpeed);
   }
@@ -136,12 +158,11 @@ var App = (function (document) {
         }
       }      
     }));
-  }
-
-  
+  }  
   
   function setEventListeners() {
     btnGenerate.addEventListener('click', generateInitialGen);
+    btnClear.addEventListener('click', getClearGrid);
     btnPlay.addEventListener('click', start);    
     btnStep.addEventListener('click', step);
     speedControl.addEventListener('input', () => outputUpdate(event.target.value)); 
