@@ -8,9 +8,12 @@
 </head>
 
 <body>
+  <header>
+      <h1>Comway's Game of Life</h1>
+  </header>  
   <div class="generate-controls">
-    <input type="number" placeholder="Height" id="input-height" step="20">
-    <input type="number" placeholder="Width" id="input-width" step="20">
+    <input type="number" placeholder="Height" id="input-height" step="10" min="10" max="50" >
+    <input type="number" placeholder="Width" id="input-width" step="20" min="10" max="100">
     <button id="btn-generate">Random Grid</button>
     <button id="btn-clear">Clear Grid</button>
     <button id="btn-play">Play</button>
@@ -24,10 +27,10 @@
       <option>3</option>
       <option>4</option>
     </datalist>
-<output for="fader" id="volume">1</output>
   </div>
-  <table id="table" cellspacing="0">
-  </table>
+  <div class="table-container">
+    <table id="table" cellspacing="0"></table>
+  </div>  
   <script src="script.js"></script>
 </body>
 
