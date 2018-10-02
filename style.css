@@ -3,7 +3,23 @@ html, body{
   height: 100%;
   margin: 0;
   padding: 0;
-  background-image: url('background.png');
+  background-image: linear-gradient(rgba(62, 143, 212, 0.42), rgba(39, 82, 113, 0.28)), url(background.png);
+}
+
+button {
+  background-color: #acb7974a;
+  border: 1px solid transparent;
+  color: white;
+  padding: 3px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #575854;
+  border: 1px solid white;
+  color: white;
+  padding: 3px;
+  cursor: pointer;
 }
 
 header {
@@ -17,12 +33,15 @@ header h1 {
   padding: 15px 0;
 }
 
-#table {
-  border: 1px solid #ccc;
+.generate-controls {
+  color: white;
+  border: 1px solid rgba(0, 208, 255, 0);
+  padding: 15px;
+  background-color: #00000073;
 }
 
 #table td{
-  border: 1px solid #eee;
+  border: .5px solid #fff0;
   width: 10px;
   height: 10px;
   padding: 0;
@@ -30,13 +49,13 @@ header h1 {
 
 
 .dot {
-  background: black;
+  background: #0c4475;
   width: 100%;
   height: 100%;
 }
 
 .blank {
-  background: #fff;
+  background: rgba(2, 133, 183, .309);
   width: 100%;
   height: 100%;
 }

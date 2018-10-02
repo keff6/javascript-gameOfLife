@@ -12,21 +12,31 @@
       <h1>Comway's Game of Life</h1>
   </header>  
   <div class="generate-controls">
-    <input type="number" placeholder="Height" id="input-height" step="10" min="10" max="50" >
-    <input type="number" placeholder="Width" id="input-width" step="20" min="10" max="100">
-    <button id="btn-generate">Random Grid</button>
-    <button id="btn-clear">Clear Grid</button>
-    <button id="btn-play">Play</button>
-    <button id="btn-step">Step</button>
-    <input id="speed-control" type="range" min="0" max="4" value="2" id="fader" 
-      step="1" list="volsettings">
-    <datalist id="volsettings">
-      <option>0</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-    </datalist>
+    <div class="grid-size-ctrl">
+      Size 
+      <input type="number" placeholder="Height" id="input-height" step="10" min="10" max="50" value="30">
+      x
+      <input type="number" placeholder="Width" id="input-width" step="20" min="10" max="100" value="50">
+      <button id="btn-generate">Random Grid</button>
+      <button id="btn-clear">Clear Grid</button>
+    </div>
+    <div class="speed-ctrl">
+      Speed
+      <input id="speed-control" type="range" min="0" max="4" value="2" id="fader" 
+        step="1" list="volsettings">
+      x
+      <datalist id="volsettings">
+        <option>0</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+      </datalist>
+    </div>
+    <div class="main-ctrl">
+        <button id="btn-play">Play</button>
+        <button id="btn-step">Step</button>
+    </div>    
   </div>
   <div class="table-container">
     <table id="table" cellspacing="0"></table>
