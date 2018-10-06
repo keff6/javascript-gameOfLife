@@ -4,13 +4,14 @@ html, body{
   margin: 0;
   padding: 0;
   background-image: linear-gradient(rgba(62, 143, 212, 0.42), rgba(39, 82, 113, 0.28)), url(background.png);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 button {
   background-color: #acb7974a;
   border: 1px solid transparent;
   color: white;
-  padding: 3px;
+  padding: 3px 10px;
   cursor: pointer;
 }
 
@@ -18,19 +19,20 @@ button:hover {
   background-color: #575854;
   border: 1px solid white;
   color: white;
-  padding: 3px;
   cursor: pointer;
 }
 
 header {
   background: rgb(31, 30, 30);
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  color: white;  
+  padding: 15px 10%; 
+  position: relative; 
 }
 
 header h1 {
   margin: 0;
   padding: 15px 0;
+  display: inline;
 }
 
 .generate-controls {
@@ -69,4 +71,25 @@ header h1 {
 
 .table-container table {
   margin: 0 auto;
+}
+
+.grid-size-ctrl,
+.speed-ctrl,
+.main-ctrl {
+  margin-bottom: 10px;
+}
+
+span {
+  margin: 0 15px;
+}
+
+.firm {
+  display: inline;
+  position: absolute;
+  right: 10%;
+  line-height: 60px;
+}
+
+.firm a {
+  color: rgb(133, 230, 236);
 }

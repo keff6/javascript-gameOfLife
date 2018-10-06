@@ -2,12 +2,19 @@ var App = (function (document) {
   // Global variables
   let heightValueUI = document.getElementById('input-height');
   let widthValueUI = document.getElementById('input-width');
+  let speedInfo = document.getElementById('speed-info');
   let heightVal = 0;
   let widthVal = 0;
   let gridValues = [];
   let play;
   const speedControl = document.getElementById('speed-control');  
-  const speed = [ 2000, 1500, 1000, 500, 250 ];
+  const speed = {
+    0: { ms: 2000, info: '-2x'}, 
+    1: { ms: 1500, info: '-1.5x'}, 
+    2: { ms: 1000, info: '1x'}, 
+    3: { ms: 500, info: '1.5x'}, 
+    4: { ms: 250, info: '1.75x'}
+  };
   let currentSpeed = 1000;
 
   // const canvas = document.getElementById('canvas');
@@ -128,7 +135,9 @@ var App = (function (document) {
 
   function outputUpdate(vol) {
     clearInterval(play)
-    currentSpeed = speed[vol];
+    console.log(speed, vol)
+    currentSpeed = speed[+vol].ms;
+    speedInfo.innerHTML = speed[+vol].info;
     console.log(currentSpeed)
     play = setInterval(getNextGeneration, currentSpeed);
   }
