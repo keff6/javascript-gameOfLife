@@ -3,7 +3,7 @@ html, body{
   height: 100%;
   margin: 0;
   padding: 0;
-  background-image: linear-gradient(rgba(62, 143, 212, 0.42), rgba(39, 82, 113, 0.28)), url(background.png);
+  background-image: linear-gradient(rgba(62, 143, 212, 0.42), rgba(39, 82, 113, 0.28)), url(img/background.png);
   font-family: Arial, Helvetica, sans-serif;
 }
 
