@@ -196,13 +196,15 @@ const App = ((UI, Controller) => {
   }
 
   function setSpeed(value) {
-    clearInterval(play);
-    currentSpeed = speed[+value].ms;
-    UI.variables.speedInfo.innerHTML = speed[+value].info;
-    play = setInterval(
-      () => UI.drawGrid(height, width, Controller.getNextGeneration()), 
-      currentSpeed
-    );
+    if (play) {
+      clearInterval(play);
+      currentSpeed = speed[+value].ms;
+      UI.variables.speedInfo.innerHTML = speed[+value].info;
+      play = setInterval(
+        () => UI.drawGrid(height, width, Controller.getNextGeneration()), 
+        currentSpeed
+      );
+    }    
   }
   
   function setEventListeners() {
