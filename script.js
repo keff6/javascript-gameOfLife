@@ -2,12 +2,11 @@
                                         UIController     
 /*---------------------------------------------------------------------------------------*/
 const UI = ((document) => {
-
   const table = document.getElementById('table'),
         nodes = document.getElementsByTagName('td'),
         variables = {
-          heightValue: document.getElementById('input-height').value,
-          widthValue: document.getElementById('input-width').value,
+          heightValue: document.getElementById('input-height'),
+          widthValue: document.getElementById('input-width'),
           speedInfo: document.getElementById('speed-info'),
           speedControl: document.getElementById('speed-control'),
           btnGenerate: document.getElementById('btn-generate'),
@@ -63,6 +62,7 @@ const UI = ((document) => {
   }
 
 })(document);
+
 /*---------------------------------------------------------------------------------------
                                         LogicController     
 /*---------------------------------------------------------------------------------------*/
@@ -153,7 +153,6 @@ const Controller = ((UI) => {
 
 })(UI);
 
-
 /*---------------------------------------------------------------------------------------
                                         AppController     
 /*---------------------------------------------------------------------------------------*/
@@ -166,12 +165,14 @@ const App = ((UI, Controller) => {
     3: { ms: 500, info: '1.5x'}, 
     4: { ms: 250, info: '1.75x'}
   };
-  const height = UI.variables.heightValue || 50,
-        width = UI.variables.widthValue || 70;
-  let play;
-  let currentSpeed = 1000;
+  let height = 30,
+      width = 50,
+      currentSpeed = 1000,
+      play;
 
   function generate() {
+    height = UI.variables.heightValue.value || 30,
+    width = UI.variables.widthValue.value || 50;
     const gridValues = Controller.generateInitialGen(height, width);
     UI.drawGrid(height, width, gridValues);
   }

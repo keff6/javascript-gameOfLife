@@ -1,18 +1,18 @@
 html, body{
-  width: 100%;
+  background-image: linear-gradient(rgba(62, 143, 212, 0.42), rgba(39, 82, 113, 0.28)), url(img/background.png);
+  font-family: Arial, Helvetica, sans-serif;
   height: 100%;
   margin: 0;
   padding: 0;
-  background-image: linear-gradient(rgba(62, 143, 212, 0.42), rgba(39, 82, 113, 0.28)), url(img/background.png);
-  font-family: Arial, Helvetica, sans-serif;
+  width: 100%; 
 }
 
 button {
   background-color: #acb7974a;
   border: 1px solid transparent;
   color: white;
-  padding: 3px 10px;
   cursor: pointer;
+  padding: 3px 10px;  
 }
 
 button:hover {
@@ -30,43 +30,43 @@ header {
 }
 
 header h1 {
-  margin: 0;
-  padding: 15px 0;
   display: inline;
+  margin: 0;
+  padding: 15px 0;  
 }
 
 .generate-controls {
-  color: white;
-  border: 1px solid rgba(0, 208, 255, 0);
-  padding: 15px;
   background-color: #00000073;
+  border: 1px solid rgba(0, 208, 255, 0);
+  color: white;  
+  padding: 15px;  
 }
 
 #table td{
-  border: .5px solid #fff0;
-  width: 10px;
+  border: .5px solid #fff0;  
   height: 10px;
   padding: 0;
+  width: 10px;
 }
 
 
 .dot {
-  background: #0c4475;
-  width: 100%;
+  background: #0c4475;  
   height: 100%;
+  width: 100%;
 }
 
 .blank {
-  background: rgba(2, 133, 183, .309);
-  width: 100%;
+  background: rgba(2, 133, 183, .309);  
   height: 100%;
+  width: 100%;
 }
 
 .generate-controls {
-  margin: 0 auto;
-  width: 80%;
+  margin: 0 auto;  
   margin-bottom: 50px;
   text-align: center;
+  width: 80%;
 }
 
 .table-container table {
@@ -85,11 +85,13 @@ span {
 
 .firm {
   display: inline;
-  position: absolute;
-  right: 10%;
   line-height: 60px;
+  position: absolute;
+  right: 10%;  
 }
 
 .firm a {
   color: rgb(133, 230, 236);
+  font-weight: bold;
+  text-decoration: none;    
 }
